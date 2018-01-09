@@ -139,7 +139,7 @@ class CreateNewMuscle(RDOperator):
         muscleVis = bpy.data.curves.new(name=self.muscle_name, type='CURVE')
         muscleVis.dimensions = '3D'
         muscleVis.fill_mode = 'FULL'
-        muscleVis.bevel_depth = global_properties.muscle_dim.get(context.scene)
+        muscleVis.bevel_depth = 0.05
 
         # create muscle object with visualization data
         muscle = bpy.data.objects.new(self.muscle_name, muscleVis)

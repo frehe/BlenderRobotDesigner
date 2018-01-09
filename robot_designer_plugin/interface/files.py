@@ -73,7 +73,14 @@ def draw(layout, context):
 
         author_box.prop(bpy.context.active_object.RobotEditor.author, 'authorName', text='Name')
         author_box.prop(bpy.context.active_object.RobotEditor.author, 'authorEmail', text='Email')
-
+# Update Ricardo
+        newBox = layout.box()
+        newBox.label(text="New Box")
+        newPropertyBox = newBox.box()
+        newPropertyBox.label(text="New Property")
+        newPropertyBox.prop(bpy.context.active_object.RobotEditor.modelMeta1, 'var1', text='Variable1')
+        newPropertyBox.prop(bpy.context.active_object.RobotEditor.modelMeta1, 'var2', text='Variable2')
+#
 
     layout = layout.box()
     layout.label('Import/Export')

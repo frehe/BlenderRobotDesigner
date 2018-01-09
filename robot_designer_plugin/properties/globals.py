@@ -40,7 +40,7 @@ import logging
 
 # Blender imports
 import bpy
-from bpy.props import IntProperty, FloatProperty, BoolProperty, StringProperty, EnumProperty, CollectionProperty
+from bpy.props import IntProperty, FloatProperty, BoolProperty, StringProperty, EnumProperty, CollectionProperty, IntVectorProperty, FloatVectorProperty
 
 # RobotDesigner imports
 from ..core import PluginManager
@@ -172,19 +172,6 @@ class RDGlobals(PropertyGroupHandlerBase):
 
         bpy.context.active_object.name = self.model_name
 
-    @staticmethod
-    def muscle_dim_update(self, context):
-        """
-        updates the visualization dimension of all muscles in scene
-        """
-        print("in the function")
-        active_model = self.model_name
-        for muscle in [obj.name for obj in bpy.data.objects
-            if bpy.data.objects[obj.name].RobotEditor.muscles.robotName == active_model]:
-                bpy.data.objects[muscle].data.bevel_depth = self.muscle_dim
-                print("changeing ----")
-
-
 
 
 
@@ -217,7 +204,7 @@ class RDGlobals(PropertyGroupHandlerBase):
                    # ('markers', 'Markers', 'Assign markers to bones'),
                    # ('controller', 'Controller', 'Modify controller parameter'),
                    ('tools', 'Tools', 'Tools'),
-                   ('files', 'Files', 'Export Armature')],
+                   ('files', 'Files', 'Export Armature'),('world', 'World', 'Set world parameters')],
         ))
 
         # Holds the selection to operate on colission geometries OR visual geometries
@@ -283,7 +270,17 @@ class RDGlobals(PropertyGroupHandlerBase):
         self.do_kinematic_update = PropertyHandler(BoolProperty(name="Import Update", default=True))
 
         self.gazebo_tags = PropertyHandler(StringProperty(name="Gazebo tags", default=""))
+        # Update Ricardo
+        self.a = PropertyHandler(IntProperty(name="A", default=0, min=0, max=1000, step=1))
+        self.b = PropertyHandler(IntProperty(name="B", default=0, min=0, max=1000, step=1))
+        self.world_s_name = PropertyHandler(StringProperty(name="Name"))
+        self.gravity = PropertyHandler(FloatProperty(name="Gravity", default=9.8, min=0, max=9.8))
+        self.light_s_name = PropertyHandler(StringProperty(name="Name"))
+        self.cast_shadows = PropertyHandler(BoolProperty(name="Cast Shadows", default=False))
+        self.difuse = PropertyHandler(IntVectorProperty(name="Difuse", default=(1,1,1), min=0, max=255))
+        self.specular = PropertyHandler(FloatVectorProperty(name="Specular", default=(0.1,0.1,0.1), min=0, max=255))
 
+        #
         self.operator_debug_level = PropertyHandler(EnumProperty(
             items=[('debug', 'Debug', 'Log everything including debug messages (verbose)'),
                    ('info', 'Info', 'Log information'),
@@ -301,8 +298,6 @@ class RDGlobals(PropertyGroupHandlerBase):
                    ('RIGID_TENDON', 'Rigid Tendon', 'Show only Rigid Tendon Muscles'),
                    ('none', "None", "Show no muscles")],
             update=self.display_muscles))
-
-        self.muscle_dim = PropertyHandler(FloatProperty(name="Muscle Dimension:", default=0.05, update=self.muscle_dim_update))
 
 
 
