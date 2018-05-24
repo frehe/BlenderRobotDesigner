@@ -157,6 +157,8 @@ class SDFTree(object):
         tree.sdf = sdf
 
         tree.robot.name = name
+        #tree.robot.self_collide = True
+
         tree.link = sdf_dom.link()
 
         #tree.set_defaults() # todo set defaults

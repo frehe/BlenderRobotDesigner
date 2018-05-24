@@ -75,7 +75,7 @@ from .generic import sdf_dom
 from pyxb.namespace import XMLSchema_instance as xsi
 import pyxb
 
-
+from ...interface.helpers import SDFCollisionPropertiesBox
 
 def _uri_for_meshes_and_muscles(in_ros_package: bool, abs_file_paths, toplevel_dir: str, file_path: str):
     """
@@ -199,6 +199,8 @@ def create_sdf(operator: RDOperator, context, filepath: str, meshpath: str, topl
         trafo, dummy = segment.RobotEditor.getTransform()
         # child.joint.origin.rpy = list_to_string(trafo.to_euler())
         # child.joint.origin.xyz = list_to_string([i * j for i, j in zip(trafo.translation, blender_scale_factor)])
+#Error SDF_Tree has no attribute named world
+        #child.world.name.append(global_properties.world_s_name)
 
         pose_xyz = list_to_string([i * j for i, j in zip(trafo.translation, blender_scale_factor)])
         pose_rpy = list_to_string(trafo.to_euler())
@@ -209,6 +211,7 @@ def create_sdf(operator: RDOperator, context, filepath: str, meshpath: str, topl
         # child.link.pos[0] = ' '.join([pose_xyz, pose_rpy])
         # if '_joint' in segment.name:
         #     segment.name = segment.name.replace("_joint", "")
+
         if '.' in segment.name:
             segment.name = segment.name.replace('.', '_')
 
@@ -363,7 +366,13 @@ def create_sdf(operator: RDOperator, context, filepath: str, meshpath: str, topl
                 collision.pose.append(' '.join([collision_pose_xyz, collision_pose_rpy]))
                 collision.name = bpy.data.objects[mesh].name #           child.link.name + '_collision'
                 operator.logger.info(" collision mesh pose'%s'" % collision.pose[0])
+#Collision elements will be appended here
+                surface = sdf_dom.surface()
+                collision.append(surface)
+                #bounce = surface.bounce()
+                #collision.append(bounce)
 
+                #collision.surface[0].bounce.restitution_coefficient.append(float(bpy.context.active_object.RobotEditor.sdfCollisionProps.restitution_coeff))
 
 
             else:
@@ -398,15 +407,10 @@ def create_sdf(operator: RDOperator, context, filepath: str, meshpath: str, topl
                 inertial.inertia[0].izz[0] = round(bpy.data.objects[frame].RobotEditor.dynamics.inertiaZZ,4)
 
                 # set inertial pose
-                pose = pose_bone.matrix.inverted() * context.active_object.matrix_world.inverted() * \
-                       bpy.data.objects[frame].matrix_world
-
-                frame_pose_xyz = list_to_string([i * j for i, j in zip(pose.translation, blender_scale_factor)])
-                frame_pose_rpy = list_to_string(pose.to_euler())
-
-                visual.pose.append(' '.join([frame_pose_xyz, frame_pose_rpy]))
-
-                inertial.pose[0] = ' '.join([frame_pose_xyz, frame_pose_rpy])
+                inertial.pose[0] = list_to_string(bpy.data.objects[frame].RobotEditor.dynamics.inertiaTrans) \
+                                   + " " + list_to_string(bpy.data.objects[frame].RobotEditor.dynamics.inertiaRot)
+#Appends new element "self_collide" to link
+        child.link.self_collide.append(bpy.context.active_object.RobotEditor.linkInfo.link_self_collide)
 
         #
         # # add joint controllers

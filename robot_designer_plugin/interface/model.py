@@ -58,6 +58,8 @@ from mathutils import Vector
 
 from ..operators.helpers import PoseMode, NotEditMode
 from ..properties.globals import global_properties
+from .helpers import RobotSelfCollisionBox
+
 
 @LogFunction
 def check_armature(layout, context):
@@ -150,6 +152,12 @@ def draw(layout, context):
         box = layout.box()
         box.label(text="Custom Gazebo tags")
         global_properties.gazebo_tags.prop(bpy.context.scene, box)
+
+        box = RobotSelfCollisionBox.get(layout, context, 'SDF-Properties')
+        if box:
+            box.prop(bpy.context.active_object.RobotEditor.robotSelfCollision, 'robot_self_collide', text='Self Collide')
+
+
     else:
         layout.menu(menus.ModelMenu.bl_idname, text="Select Robot")
         layout.label(text="Select robot first")
