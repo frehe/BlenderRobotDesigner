@@ -750,19 +750,22 @@ class Importer(object):
         #             scale = Matrix([[s1[0] * s2[0], 0, 0, 0], [0, s1[1] * s2[1], 0, 0],
         #                             [0, 0, s1[2] * s2[2], 0], [0, 0, 0, 1]])
         #             bpy.context.active_object.matrix_world = trafo * scale
+
         for chain in kinematic_chains:
             ref_pose = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
             self.logger.debug('new chain: %s   %s', chain, ref_pose)
             root_name = self.parse(chain, ref_pose)
             UpdateSegments.run(segment_name=root_name, recurse=True)
-  #      try:
-  #          SelectCoordinateFrame.run(mesh_name='CoordinateFrame')
-  #      except:
-  #          pass
+        # try:
+            # SelectCoordinateFrame.run(mesh_name='CoordinateFrame')
+        # except:
+            # pass
 
-        #bpy.ops.view3d.view_lock_to_active()
+        # bpy.ops.view3d.view_lock_to_active()
         bpy.context.active_object.show_x_ray = True
 
+        # Set location of imported object to cursor location
+        bpy.context.active_object.location = bpy.context.scene.cursor_location
 
 
 # @RDOperator.Preconditions(ObjectMode)
