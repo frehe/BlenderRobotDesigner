@@ -37,15 +37,8 @@ import bpy
 # RobotDesigner imports
 from .model import check_armature
 
-import math
-
-from . import menus
-from ..operators import sensors
-from .helpers import EditMusclesBox
-from ..core.gui import InfoBox
 from ..properties.globals import global_properties
-from ..operators import model, muscles, segments, modules
-from ..properties.globals import global_properties
+from ..operators import modules
 
 from .helpers import create_segment_selector
 
@@ -63,7 +56,8 @@ def draw(layout, context):
     import_box = layout.box()
     row0 = import_box.row()
 
-    ######### Create sub-box where user can import one of a few gripper files (SDF + meshes) #########
+    ######### Create sub-box where user can import one of a few gripper and robot arm files (SDF + meshes) #########
+    # Sub-box 1 contains buttons to import grippers
     row0.label("Import modular robot parts to scene")
     sub_box_1 = import_box.box()
     sub_box_1.label('Import gripper')
@@ -74,10 +68,15 @@ def draw(layout, context):
     modules.ImportGripper3.place_button(row2)
     modules.ImportGripper4.place_button(row2)
 
-    # Sub-box 2 contains buttons to import 2-4 arms
+    # Sub-box 2 contains buttons to import arms
     # TODO create buttons to import arm modules
     sub_box_2 = import_box.box()
     sub_box_2.label('Import arm')
+    row1 = sub_box_2.row(align=True)
+    modules.ImportArm1.place_button(row1)
+    modules.ImportArm2.place_button(row1)
+
+    #######################################################
 
     ######### Create box with merge functionality #########
     merge_box = layout.box()
@@ -92,6 +91,7 @@ def draw(layout, context):
 
     merge_col1.label("Select module to assign to robot '" + global_properties.model_name.get(context.scene) + "'")
     moduleMenuText = ""
+
     # Only show addable modules that can be selected in module selector menu
     if (bpy.context.active_object.name != global_properties.new_module_name.get(context.scene)):
         moduleMenuText = global_properties.new_module_name.get(context.scene)
@@ -102,8 +102,6 @@ def draw(layout, context):
 
     modules.MergeModuleToRobot.place_button(merge_box_row3)
 
-    ######### Create box with detach functionality #########
-    detach_box = layout.box()
-    row3 = detach_box.row()
-    row3.label("Detach module from robot")
+    #######################################################
+
     # TODO Implement functionality to detach modules

@@ -285,8 +285,8 @@ class SelectAllGeometries(RDOperator):
     @RDOperator.OperatorLogger
     @RDOperator.Postconditions(ObjectMode)
     def execute(self, context):
-        mesh_type = global_properties.mesh_type.get(context.scene)
-        meshes = {obj.name for obj in context.scene.objects if not obj.parent_bone is None and obj.type == 'MESH' }
+        mesh_type =  global_properties.mesh_type.get(context.scene)
+        meshes = {obj.name for obj in context.scene.objects if not obj.parent_bone is None and obj.type == 'MESH'}
         bpy.ops.object.mode_set(mode='OBJECT')
         bpy.ops.object.select_all(action='DESELECT')
 

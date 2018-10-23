@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <sdf version="1.5">
 	<model name="gripper_arm">
+		<pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
 		<link name="base_link">
 			<pose>0.0 0.0 0.0 0.0 -0.0 0.0</pose>
 			<inertial>
@@ -34,7 +35,7 @@
 				<pose>-2.086162567138672e-07 8.530914783477783e-07 -0.03199789673089981 -1.1394178756063411e-07 5.1209660512085975e-08 -6.705522537231445e-08</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_006_wrist_lat_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_006_wrist_lat_rot_Coll.dae</uri>
 						<scale>1.0 1.0 1.0</scale>
 					</mesh>
 				</geometry>
@@ -43,7 +44,7 @@
 				<pose>-2.086162567138672e-07 8.493661880493164e-07 -0.03199789673089981 -1.1149174383717764e-07 5.256789137320084e-08 -6.705522537231445e-08</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_006_wrist_lat_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_006_wrist_lat_rot.dae</uri>
 						<scale>1.0 1.0 1.0</scale>
 					</mesh>
 				</geometry>
@@ -67,7 +68,7 @@
 				<pose>-1.9291951502964366e-07 0.013130072504281998 2.2873282432556152e-06 3.141590118408203 2.745721019437042e-07 -5.438923835754395e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_007_wrist_lat_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_007_wrist_lat_rot_Coll.dae</uri>
 						<scale>1.0 1.0 1.0</scale>
 					</mesh>
 				</geometry>
@@ -76,7 +77,7 @@
 				<pose>-1.6311719264194835e-07 0.013130132108926773 2.2873282432556152e-06 3.141590118408203 2.8396095785865327e-07 -5.438923835754395e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_007_wrist_lat_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_007_wrist_lat_rot.dae</uri>
 						<scale>1.0 1.0 1.0</scale>
 					</mesh>
 				</geometry>
@@ -100,7 +101,7 @@
 				<pose>2.960801168683247e-07 -7.934859240776859e-07 0.0244183000177145 -2.756714593488141e-06 3.1415884494781494 -3.0796370538155315e-06</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_008_thumb_lat_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_008_thumb_lat_rot_Coll.dae</uri>
 						<scale>1.0 0.9999998807907104 1.0000001192092896</scale>
 					</mesh>
 				</geometry>
@@ -109,7 +110,7 @@
 				<pose>2.0667314970523876e-07 -8.530905688530765e-07 0.024418195709586143 -2.5480987915216247e-06 3.1415886878967285 -2.5411547994735884e-06</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_008_thumb_lat_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_008_thumb_lat_rot.dae</uri>
 						<scale>1.0 0.9999999403953552 1.0000001192092896</scale>
 					</mesh>
 				</geometry>
@@ -148,7 +149,7 @@
 				<pose>1.425663981535763e-06 0.000481705938000232 -2.486454775407765e-07 -3.141589879989624 2.8299865562075865e-07 7.152555667744309e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_009_thumb_base_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_009_thumb_base_rot_Coll.dae</uri>
 						<scale>1.0000004768371582 0.9999999403953552 1.0000003576278687</scale>
 					</mesh>
 				</geometry>
@@ -157,7 +158,7 @@
 				<pose>9.539490974930231e-07 0.0004817487788386643 -2.784477146633435e-07 -3.1415903568267822 4.384605745144654e-07 9.387727573084703e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_009_thumb_base_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_009_thumb_base_rot.dae</uri>
 						<scale>1.0 0.9999999403953552 1.0000001192092896</scale>
 					</mesh>
 				</geometry>
@@ -181,7 +182,7 @@
 				<pose>-5.803673843729484e-07 6.662495707132621e-06 4.88661044073524e-07 3.1415908336639404 2.2098390672908863e-07 1.8477435332897585e-06</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_010_thumb_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_010_thumb_Coll.dae</uri>
 						<scale>1.0000004768371582 1.0 1.0000004768371582</scale>
 					</mesh>
 				</geometry>
@@ -190,7 +191,7 @@
 				<pose>-6.851411740171898e-07 6.677396868326468e-06 4.2905639929813333e-07 3.141590118408203 2.7136485414303024e-07 2.0712609511974733e-06</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollie_010.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollie_010.dae</uri>
 						<scale>1.0000001192092896 0.9999998807907104 1.0000001192092896</scale>
 					</mesh>
 				</geometry>
@@ -214,7 +215,7 @@
 				<pose>-5.657574675410615e-08 2.0726616867250414e-07 -6.707963251528781e-08 3.1415910720825195 1.8785800648402073e-07 1.5646216979803285e-06</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_011_thumb_topsegment_bf_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_011_thumb_topsegment_bf_rot_Coll.dae</uri>
 						<scale>1.0000004768371582 1.0000001192092896 1.0000005960464478</scale>
 					</mesh>
 				</geometry>
@@ -223,7 +224,7 @@
 				<pose>-5.983536510711929e-08 1.8863971718019457e-07 -3.727730657487882e-08 3.141590118408203 9.255084876258479e-08 1.713633309918805e-06</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_011_thumb_topsegment_bf_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_011_thumb_topsegment_bf_rot.dae</uri>
 						<scale>0.9999998807907104 0.9999997019767761 1.000000238418579</scale>
 					</mesh>
 				</geometry>
@@ -292,7 +293,7 @@
 				<pose>2.865870740720311e-08 -5.450151547847781e-07 0.013210215605795383 4.470348002882929e-08 3.637777012954757e-07 -2.548476061292604e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_012_indexfing_lr_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_012_indexfing_lr_rot_Coll.dae</uri>
 						<scale>1.0 1.000000238418579 1.0</scale>
 					</mesh>
 				</geometry>
@@ -301,7 +302,7 @@
 				<pose>2.8658712736273628e-08 -4.258058652339969e-07 0.013210211880505085 5.215405707303944e-08 3.637777012954757e-07 -2.548476061292604e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_012_indexfing_lr_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_012_indexfing_lr_rot.dae</uri>
 						<scale>1.0 1.0000001192092896 1.0</scale>
 					</mesh>
 				</geometry>
@@ -325,7 +326,7 @@
 				<pose>-4.4812750843448157e-07 2.1681142925444874e-07 -6.688430431722736e-08 -2.8125944027124206e-06 2.870733055715391e-07 1.5789796137255507e-08</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_013_indexfing_bf_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_013_indexfing_bf_rot_Coll.dae</uri>
 						<scale>1.0 1.0000001192092896 1.000000238418579</scale>
 					</mesh>
 				</geometry>
@@ -334,7 +335,7 @@
 				<pose>-4.4812750843448157e-07 9.760213259824013e-08 -7.279680858118809e-09 -2.4549658519390505e-06 2.9331221185202594e-07 1.3483570171501924e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_013_indexfing_bf_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_013_indexfing_bf_rot.dae</uri>
 						<scale>1.0 1.0000001192092896 1.0000001192092896</scale>
 					</mesh>
 				</geometry>
@@ -358,7 +359,7 @@
 				<pose>-6.069731028901515e-08 -4.427509168181132e-07 -1.1498642038532125e-07 -3.118068434559973e-06 2.933121834303165e-07 1.3483570171501924e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_014_indexfing_midsegment_bf_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_014_indexfing_midsegment_bf_rot_Coll.dae</uri>
 						<scale>1.0 1.0 1.0</scale>
 					</mesh>
 				</geometry>
@@ -367,7 +368,7 @@
 				<pose>-6.069731028901515e-08 -3.7942098174426064e-07 -8.518409089219858e-08 -2.998858690261841e-06 2.8707327714982966e-07 1.5789797913612347e-08</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_014_indexfing_midsegment_bf_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_014_indexfing_midsegment_bf_rot.dae</uri>
 						<scale>1.0 1.0000001192092896 1.0000001192092896</scale>
 					</mesh>
 				</geometry>
@@ -391,7 +392,7 @@
 				<pose>-2.693135741083097e-07 7.000378900556825e-06 -4.175580272658408e-07 -2.4065370780590456e-06 2.9331221185202594e-07 1.3483571592587396e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_015_indexfing_topsegment_bf_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_015_indexfing_topsegment_bf_rot_Coll.dae</uri>
 						<scale>1.0000001192092896 1.0000001192092896 1.000000238418579</scale>
 					</mesh>
 				</geometry>
@@ -400,7 +401,7 @@
 				<pose>-2.693135741083097e-07 6.9407742557814345e-06 -3.877557332998549e-07 -2.644956111907959e-06 2.9331221185202594e-07 1.3483571592587396e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_015_indexfing_topsegment_bf_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_015_indexfing_topsegment_bf_rot.dae</uri>
 						<scale>1.0000001192092896 1.0000001192092896 1.0000001192092896</scale>
 					</mesh>
 				</geometry>
@@ -424,7 +425,7 @@
 				<pose>-4.4706115431836224e-07 -1.2383795819914667e-06 0.013210099190473557 1.3411040811206476e-07 3.637777012954757e-07 -2.548476061292604e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_016_midfing_lr_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_016_midfing_lr_rot_Coll.dae</uri>
 						<scale>1.0 1.0000003576278687 1.0</scale>
 					</mesh>
 				</geometry>
@@ -433,7 +434,7 @@
 				<pose>-4.4706115431836224e-07 -1.178774937216076e-06 0.013210106641054153 1.415609887089886e-07 3.637777012954757e-07 -2.548476061292604e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_016_midfing_lr_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_016_midfing_lr_rot.dae</uri>
 						<scale>1.0 1.000000238418579 1.0</scale>
 					</mesh>
 				</geometry>
@@ -457,7 +458,7 @@
 				<pose>-8.940713058791516e-08 2.3934967430250254e-07 -8.501618253831111e-07 5.215406986280868e-07 2.870733055715391e-07 1.5789794360898668e-08</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_017_midfing_bf_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_017_midfing_bf_rot_Coll.dae</uri>
 						<scale>1.0 1.0 1.000000238418579</scale>
 					</mesh>
 				</geometry>
@@ -466,7 +467,7 @@
 				<pose>-8.940713058791516e-08 1.797450295271119e-07 -7.905571806077205e-07 4.060566993757675e-07 2.870733055715391e-07 1.5789794360898668e-08</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_017_midfing_bf_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_017_midfing_bf_rot.dae</uri>
 						<scale>1.0 1.0 1.000000238418579</scale>
 					</mesh>
 				</geometry>
@@ -490,7 +491,7 @@
 				<pose>-1.4007092659085174e-06 1.2675302514253417e-06 -4.3238816260782187e-07 -1.341710174074251e-07 3.0578996756958077e-07 3.7292758747753396e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_018_midfing_midsegment_bf_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_018_midfing_midsegment_bf_rot_Coll.dae</uri>
 						<scale>1.0 1.0 1.0000003576278687</scale>
 					</mesh>
 				</geometry>
@@ -499,7 +500,7 @@
 				<pose>-1.4007092659085174e-06 1.2675302514253417e-06 -4.0258584022012656e-07 -1.341710174074251e-07 3.0578996756958077e-07 3.7292758747753396e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_018_midfing_midsegment_bf_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_018_midfing_midsegment_bf_rot.dae</uri>
 						<scale>1.0 1.0 1.000000238418579</scale>
 					</mesh>
 				</geometry>
@@ -523,7 +524,7 @@
 				<pose>-2.9802460943528786e-08 6.147660315036774e-06 -8.312792942888336e-07 -4.95524261623359e-07 2.995510612890939e-07 2.538816659125587e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_019_midfing_topsegment_bf_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_019_midfing_topsegment_bf_rot_Coll.dae</uri>
 						<scale>1.0 1.0 1.0000003576278687</scale>
 					</mesh>
 				</geometry>
@@ -532,7 +533,7 @@
 				<pose>-2.9802460943528786e-08 6.143935024738312e-06 -8.312792942888336e-07 -4.95524261623359e-07 2.995510612890939e-07 2.538816659125587e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_019_midfing_topsegment_bf_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_019_midfing_topsegment_bf_rot.dae</uri>
 						<scale>1.0 1.0 1.000000238418579</scale>
 					</mesh>
 				</geometry>
@@ -556,7 +557,7 @@
 				<pose>0.0006994865834712982 1.4901161193847656e-08 -0.010019376873970032 3.141590118408203 3.305856477453517e-09 -3.1292435664909135e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_020_outerhand_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_020_outerhand_rot_Coll.dae</uri>
 						<scale>1.0 0.9999999403953552 1.0</scale>
 					</mesh>
 				</geometry>
@@ -565,7 +566,7 @@
 				<pose>0.0006995163857936859 6.705522537231445e-08 -0.010019376873970032 3.141590118408203 5.243890210948621e-09 -3.1664964694755326e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_020_outerhand_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_020_outerhand_rot.dae</uri>
 						<scale>1.0 0.9999999403953552 1.0</scale>
 					</mesh>
 				</geometry>
@@ -634,7 +635,7 @@
 				<pose>-6.834711143710592e-07 -1.5447959640368936e-06 -0.013210132718086243 0.3875379264354706 -8.293633868561301e-08 1.7348386904814106e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_021_littlefinger_lr_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_021_littlefinger_lr_rot_Coll.dae</uri>
 						<scale>1.0 0.9999998807907104 0.9999997615814209</scale>
 					</mesh>
 				</geometry>
@@ -643,7 +644,7 @@
 				<pose>-5.64261824820278e-07 -1.4553889968738076e-06 -0.013210106641054153 0.38753777742385864 -7.42058034575166e-07 2.4860872827048297e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_021_littlefinger_lr_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_021_littlefinger_lr_rot.dae</uri>
 						<scale>1.0 0.9999998211860657 0.9999998211860657</scale>
 					</mesh>
 				</geometry>
@@ -667,7 +668,7 @@
 				<pose>5.085521479486488e-07 4.4796615839004517e-07 1.74081051795838e-07 -1.4901151246249356e-07 1.770504525211436e-07 -3.306007556602708e-08</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_022_littlefinger_bf_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_022_littlefinger_bf_rot_Coll.dae</uri>
 						<scale>1.0 0.9999998807907104 0.9999998807907104</scale>
 					</mesh>
 				</geometry>
@@ -676,7 +677,7 @@
 				<pose>8.661800734444114e-07 4.852190613746643e-07 2.336856823603739e-07 -3.2037490882430575e-07 2.1638308567162312e-07 9.689740636531496e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_022_littlefinger_bf_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_022_littlefinger_bf_rot.dae</uri>
 						<scale>1.0 0.9999998807907104 0.9999998211860657</scale>
 					</mesh>
 				</geometry>
@@ -700,7 +701,7 @@
 				<pose>-1.711720869934652e-06 1.5206640000542393e-06 2.697741763313388e-07 -4.1723231447576836e-07 5.7841230471922245e-08 8.614933477701925e-08</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_023_littlefinger_midsegment_bf_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_023_littlefinger_midsegment_bf_rot_Coll.dae</uri>
 						<scale>0.9999999403953552 0.9999998211860657 0.9999998211860657</scale>
 					</mesh>
 				</geometry>
@@ -709,7 +710,7 @@
 				<pose>-1.9501394490362145e-06 1.4200810483089299e-06 1.505649009914123e-07 -5.066393669039826e-07 9.717378190998716e-08 1.0881833532039309e-06</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_023_littlefinger_midsegment_bf_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_023_littlefinger_midsegment_bf_rot.dae</uri>
 						<scale>0.9999999403953552 0.9999998807907104 0.9999998211860657</scale>
 					</mesh>
 				</geometry>
@@ -733,7 +734,7 @@
 				<pose>-9.219592698173074e-07 2.5488441224297276e-06 3.768458327613189e-07 -5.960461635368119e-07 1.8418388947338826e-07 -1.1604107896800997e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_024_littlefinger_topsegment_bf_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_024_littlefinger_topsegment_bf_rot_Coll.dae</uri>
 						<scale>1.0 0.9999998807907104 0.9999998211860657</scale>
 					</mesh>
 				</geometry>
@@ -742,7 +743,7 @@
 				<pose>-9.219592698173074e-07 2.5413935418328037e-06 4.960551223121001e-07 -6.258486564547638e-07 1.0965159447096084e-07 1.3262751963338815e-06</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_024_littlefinger_topsegment_bf_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_024_littlefinger_topsegment_bf_rot.dae</uri>
 						<scale>1.0 0.9999999403953552 0.9999998211860657</scale>
 					</mesh>
 				</geometry>
@@ -781,7 +782,7 @@
 				<pose>-5.8583491835406676e-08 -3.30572902385029e-07 -0.013209938071668148 0.1913403570652008 -9.038694059881891e-08 1.7348385483728634e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_025_ringfinger_lr_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_025_ringfinger_lr_rot_Coll.dae</uri>
 						<scale>1.0 0.9999998211860657 0.9999997615814209</scale>
 					</mesh>
 				</geometry>
@@ -790,7 +791,7 @@
 				<pose>-5.8583491835406676e-08 -3.007705799973337e-07 -0.013210008852183819 0.19134031236171722 -9.838751111601596e-07 2.6108654083145666e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_025_ringfinger_lr_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_025_ringfinger_lr_rot.dae</uri>
 						<scale>1.0 0.9999998211860657 0.9999998211860657</scale>
 					</mesh>
 				</geometry>
@@ -814,7 +815,7 @@
 				<pose>-1.012306029224419e-06 8.953963401836518e-07 -4.7467574404436164e-07 -0.052606575191020966 3.033931648133148e-07 -2.3525031167537236e-07</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_026_ringfinger_bf_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_026_ringfinger_bf_rot_Coll.dae</uri>
 						<scale>1.0 0.9999998211860657 0.9999997019767761</scale>
 					</mesh>
 				</geometry>
@@ -823,7 +824,7 @@
 				<pose>-7.738875069662754e-07 9.214733722728852e-07 -5.640827112074476e-07 -0.05260690674185753 2.350997476696648e-07 1.3261117146612378e-06</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_026_ringfinger_bf_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_026_ringfinger_bf_rot.dae</uri>
 						<scale>1.0 0.9999999403953552 0.9999997615814209</scale>
 					</mesh>
 				</geometry>
@@ -847,7 +848,7 @@
 				<pose>-4.162595814705128e-07 2.0725881313410355e-06 -4.742578596506064e-07 -1.1920904086082373e-07 5.7841173628503384e-08 8.614932056616453e-08</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollhollie_027_ringfinger_midsegment_bf_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollhollie_027_ringfinger_midsegment_bf_rot_Coll.dae</uri>
 						<scale>1.0 0.9999998807907104 0.9999998807907104</scale>
 					</mesh>
 				</geometry>
@@ -856,7 +857,7 @@
 				<pose>-4.162595814705128e-07 2.0390605186548783e-06 -4.444555372629111e-07 -2.570449453287438e-07 1.183138422788943e-07 1.2072291610820685e-06</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollhollie_027_ringfinger_midsegment_bf_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollhollie_027_ringfinger_midsegment_bf_rot.dae</uri>
 						<scale>1.0 0.9999998807907104 0.9999998211860657</scale>
 					</mesh>
 				</geometry>
@@ -880,7 +881,7 @@
 				<pose>4.778100901603466e-07 9.848033641901566e-07 -1.8699134329835942e-07 0.020018044859170914 1.8418386105167883e-07 -8.623881342373352e-08</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/collisions/COL_hollie_028_ringfinger_topsegment_bf_rot_Coll.dae</uri>
+						<uri>model://gripper_hand/meshes/collisions/COL_hollie_028_ringfinger_topsegment_bf_rot_Coll.dae</uri>
 						<scale>1.0 0.9999997019767761 0.9999997019767761</scale>
 					</mesh>
 				</geometry>
@@ -889,7 +890,7 @@
 				<pose>7.162286692619091e-07 1.0630344604578568e-06 -1.2738672694467823e-07 0.020017722621560097 1.2455274145395379e-07 1.3262751963338815e-06</pose>
 				<geometry>
 					<mesh>
-						<uri>model://model.sdf/meshes/visual/VIS_hollie_028_ringfinger_topsegment_bf_rot.dae</uri>
+						<uri>model://gripper_hand/meshes/visual/VIS_hollie_028_ringfinger_topsegment_bf_rot.dae</uri>
 						<scale>1.0 0.9999997019767761 0.9999997019767761</scale>
 					</mesh>
 				</geometry>

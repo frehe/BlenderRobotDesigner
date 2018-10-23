@@ -31,8 +31,11 @@
 #
 # #####
 
+from math import degrees, radians
+
 # Blender imports
 import bpy
+import os
 
 # RobotDesigner imports
 from ..core import config, PluginManager, Condition, RDOperator
@@ -55,9 +58,8 @@ class ImportGripper1(RDOperator):
     bl_idname = config.OPERATOR_PREFIX + "import_gripper_1_sdf"
     bl_label = "2 finger angular"
 
-    # Requires resources grippers folder to be inside #/Library/Application Support/Blender/2.79/datafiles
-    path_to_addons = bpy.utils.user_resource('DATAFILES', create=True)
-    filepath = path_to_addons + "grippers/gripper_2_finger_angular/model.sdf/model.sdf"
+    # Access gripper files from 'grippers' folder, which is located in parent directory, i.e. 'robot_designer_plugin'
+    filepath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'resources', 'modules_grippers', 'gripper_angular', 'model.sdf')
 
     @RDOperator.OperatorLogger
     @RDOperator.Postconditions(ModelSelected, ObjectMode)
@@ -79,9 +81,8 @@ class ImportGripper2(RDOperator):
     bl_idname = config.OPERATOR_PREFIX + "import_gripper_2_sdf"
     bl_label = "2 finger angular wrist"
 
-    # Requires resources grippers folder to be inside #/Library/Application Support/Blender/2.79/datafiles
-    path_to_addons = bpy.utils.user_resource('DATAFILES', create=True)
-    filepath = path_to_addons + "grippers/gripper_2_finger_angular_wrist/model.sdf/model.sdf"
+    # Access gripper files from 'grippers' folder, which is located in parent directory, i.e. 'robot_designer_plugin'
+    filepath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'resources', 'modules_grippers', 'gripper_angular_wrist', 'model.sdf')
 
     @RDOperator.OperatorLogger
     @RDOperator.Postconditions(ModelSelected, ObjectMode)
@@ -104,9 +105,8 @@ class ImportGripper3(RDOperator):
     bl_idname = config.OPERATOR_PREFIX + "import_gripper_3_sdf"
     bl_label = "4 finger centric"
 
-    # Requires resources grippers folder to be inside #/Library/Application Support/Blender/2.79/datafiles
-    path_to_addons = bpy.utils.user_resource('DATAFILES', create=True)
-    filepath = path_to_addons + "grippers/gripper_4_finger_centric/model.sdf/model.sdf"
+    # Access gripper files from 'grippers' folder, which is located in parent directory, i.e. 'robot_designer_plugin'
+    filepath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'resources', 'modules_grippers', 'gripper_four_finger', 'model.sdf')
 
     @RDOperator.OperatorLogger
     @RDOperator.Postconditions(ModelSelected, ObjectMode)
@@ -128,9 +128,57 @@ class ImportGripper4(RDOperator):
     bl_idname = config.OPERATOR_PREFIX + "import_gripper_4_sdf"
     bl_label = "Humanoid hand"
 
-    # Requires resources grippers folder to be inside #/Library/Application Support/Blender/2.79/datafiles
-    path_to_addons = bpy.utils.user_resource('DATAFILES', create=True)
-    filepath = path_to_addons + "grippers/gripper_2_finger_angular/model.sdf/model.sdf"
+    # Access gripper files from 'grippers' folder, which is located in parent directory, i.e. 'robot_designer_plugin'
+    filepath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'resources', 'modules_grippers', 'gripper_hand', 'model.sdf')
+
+
+    @RDOperator.OperatorLogger
+    @RDOperator.Postconditions(ModelSelected, ObjectMode)
+    def execute(self, context):
+        import os
+        importer = sdf.sdf_import.Importer(self, self.filepath)
+        importer.import_file()
+        return {'FINISHED'}
+
+
+@RDOperator.Preconditions(ObjectMode)
+@PluginManager.register_class
+class ImportArm1(RDOperator):
+    """
+    :term:`Operator<operator>` for importing a gripper from an SDF plain file
+    """
+
+    # Obligatory class attributes
+    bl_idname = config.OPERATOR_PREFIX + "import_arm_1_sdf"
+    bl_label = "Arm 1"
+
+    # Access arm module files from 'arms' folder, which is located in parent directory, i.e. 'robot_designer_plugin'
+    filepath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'resources', 'modules_arms', 'gripper_four_finger', 'model.sdf')
+
+
+    @RDOperator.OperatorLogger
+    @RDOperator.Postconditions(ModelSelected, ObjectMode)
+    def execute(self, context):
+        import os
+        importer = sdf.sdf_import.Importer(self, self.filepath)
+        importer.import_file()
+        return {'FINISHED'}
+
+
+@RDOperator.Preconditions(ObjectMode)
+@PluginManager.register_class
+class ImportArm2(RDOperator):
+    """
+    :term:`Operator<operator>` for importing a gripper from an SDF plain file
+    """
+
+    # Obligatory class attributes
+    bl_idname = config.OPERATOR_PREFIX + "import_arm_2_sdf"
+    bl_label = "Arm 2"
+
+    # Access arm module files from 'arms' folder, which is located in parent directory, i.e. 'robot_designer_plugin'
+    filepath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'resources', 'modules_arms', 'gripper_four_finger', 'model.sdf')
+
 
     @RDOperator.OperatorLogger
     @RDOperator.Postconditions(ModelSelected, ObjectMode)
@@ -147,7 +195,7 @@ class BaseMenu(object):
     logger = gui_logger
 
     @classmethod
-    def putMenu(cls, layout, context, text="", **kwargs): # todo which kwargs are possible
+    def putMenu(cls, layout, context, text="", **kwargs):
         layout.menu(cls.bl_idname, text=text)
 
 
@@ -173,26 +221,6 @@ class ModuleMenu(bpy.types.Menu, BaseMenu):
             model.SelectModuleToAdd.place_button(layout, text=text).module_name = text
 
 
-@PluginManager.register_class
-class AssignParentMenu(bpy.types.Menu, BaseMenu):
-    """
-    :ref:`menu` for selecting a robot, to which a new module should be added
-    """
-
-    from ..core.config import OPERATOR_PREFIX
-    bl_idname = OPERATOR_PREFIX + "parentbonemenu"
-    bl_label = "Select Parent Bone"
-
-    @RDOperator.OperatorLogger
-    def draw(self, context):
-        from ..operators import model
-        layout = self.layout
-        armatures = [obj for obj in context.scene.objects if obj.type == 'ARMATURE']
-
-        for arm in armatures:
-            # Place one button for each armature in Scene
-            text = arm.name
-            model.SelectParentBone.place_button(layout, text=text).parent_segment_name = text
 
 
 @RDOperator.Preconditions(ObjectMode)
@@ -215,21 +243,48 @@ class MergeModuleToRobot(RDOperator):
         from ..properties.globals import global_properties
 
         parentRobotName = context.active_object.name
+        parent_position = bpy.context.active_object.location
         single_segment = getSingleSegment(context)
         parentSegmentName = single_segment.name
         selectedModuleBaseName = global_properties.new_module_bone_name.get(context.scene)
 
-        # TODO check if parentSegmentName and selectedModuleBaseName are identical
+        # check if parentSegmentName and selectedModuleBaseName are identical
         # change parentSegmentName if that is the case (to avoid Blender adding .001 to the name)
-        # if (parentSegmentName == selectedModuleBaseName):
-            # newName = parentSegmentName + "_001"
-            # bpy.context.active_bone.name = newName
-            # parentSegmentName = newName
+        # Since identical naming is not possible anymore, this is only for safety
+        if (parentSegmentName == selectedModuleBaseName):
+            newName = parentSegmentName + "_parent"
+            bpy.context.active_bone.name = newName
+            parentSegmentName = newName
 
         self.logger.debug("Parent robot: " + parentRobotName)
         self.logger.debug("Parent segment: " + parentSegmentName)
         self.logger.debug("Active bone: " + bpy.context.active_bone.name)
         self.logger.debug("Name of selected module's base: " + selectedModuleBaseName)
+
+        ########## Keep original object locations and rotations by saving all previous values
+        ########## and transforming objects back after join() functions
+        
+        # armatures = [obj for obj in context.scene.objects if obj.type == 'ARMATURE']
+        # childArmatureName = ""
+        # for arm in armatures:
+        #   if arm.data.bones[0].name == selectedModuleBaseName:
+        #       childArmatureName = arm.name
+
+        # Get root bone of child module
+        # child_root_bone = bpy.data.armatures[childArmatureName].bones[selectedModuleBaseName]
+        # child_root_bone.RobotEditor.RD_Bone = False
+        # parent_armature = bpy.data.objects[parentRobotName]
+        # if parent_armature is not None:
+        #    self.logger.debug("invert")
+        #    m = parent_armature.matrix_world.inverted() * child_root_bone.matrix_local
+        # else:
+        #    m = child_root_bone.matrix_local
+        # child_euler = m.to_euler()
+        # child_xyz = m.translation
+        # self.logger.debug("Matrix: " + str(m))
+        # m = parent.matrix_local
+        # parent_euler = m.to_euler()
+        # parent_xyz = m.translation
 
         model.SelectModel.run(model_name=global_properties.new_module_name.get(context.scene))
         bpy.data.objects[parentRobotName].select = True
@@ -238,11 +293,26 @@ class MergeModuleToRobot(RDOperator):
         bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
         segments.AssignParentSegment.run(parent_name=parentSegmentName)
         segments.SelectSegment.run(segment_name=parentSegmentName)
-        segments.UpdateSegmentsRigid.run(segment_name=selectedModuleBaseName, recurse=True)  # This function is responsible for moving the merged objects together
+        segments.UpdateSegments.run(segment_name=selectedModuleBaseName, recurse=True)
 
-        # Merge function swaps the name of the resulting armature (robot)
-        # Thus, change the name to the actual root robot and everything should be fine
+        # Join function swaps the name of the resulting armature (robot)
+        # Thus, change the name to the actual root robot
         segments.SelectSegment.run(segment_name=parentSegmentName)
         model.RenameModel.run(newName=parentRobotName)
+
+        # Update origin to parent robot location
+        bpy.context.scene.cursor_location = parent_position
+        bpy.ops.object.origin_set(type='ORIGIN_CURSOR', center='MEDIAN')
+
+        segments.UpdateSegments.run(segment_name=parentSegmentName, recurse=True)
+
+        # child_root_bone.RobotEditor.Euler.x.value = child_xyz[0]
+        # child_root_bone.RobotEditor.Euler.y.value = child_xyz[1]
+        # child_root_bone.RobotEditor.Euler.z.value = child_xyz[2]
+        # child_root_bone.RobotEditor.Euler.alpha.value = round(degrees(child_euler[0]), 0)
+        # child_root_bone.RobotEditor.Euler.beta.value = round(degrees(child_euler[1]), 0)
+        # child_root_bone.RobotEditor.Euler.gamma.value = round(degrees(child_euler[2]), 0)
+        # child_root_bone.RobotEditor.RD_Bone = True
+        # segments.UpdateSegments.run(segment_name=parentSegmentName, recurse=True)
 
         return {'FINISHED'}

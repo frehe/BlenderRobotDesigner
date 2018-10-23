@@ -43,6 +43,8 @@ Sphinx-autodoc tag
 # import os
 # import sys
 # import math
+import re
+import string
 
 # ######
 # Blender imports
@@ -52,8 +54,8 @@ from bpy.props import StringProperty
 
 # ######
 # RobotDesigner imports
-from ..core import config, PluginManager, RDOperator
-from .helpers import ModelSelected, ObjectMode
+from ..core import config, PluginManager, RDOperator, Condition
+from .helpers import ModelSelected, NotEditMode, ObjectMode
 from ..properties.globals import global_properties
 
 
@@ -299,9 +301,35 @@ class RenameModel(RDOperator):
         """
         return super().run(**cls.pass_keywords())
 
+
     @RDOperator.OperatorLogger
     @RDOperator.Postconditions(ModelSelected)
     def execute(self, context):
+
+        #######################################################################
+        #######################################################################
+
+        # Check if robot name is already in use
+        armatures = [obj for obj in context.scene.objects if obj.type == 'ARMATURE']
+        isRobotNameAlreadyUsed = False
+        for arm in armatures:
+            if arm.name == self.newName:
+                isRobotNameAlreadyUsed = True
+
+        # Change new name to avoid conflict in file
+        if isRobotNameAlreadyUsed:
+            # Increment mulitpliticity counter in name if it already had a "_1" appended
+            searchObj = re.search('_\d{1,}\Z', self.newName, re.I)
+            if searchObj:
+                foundNumber = int(float(searchObj.group()[1:]))
+                self.newName = self.newName.rstrip(string.digits) + str(foundNumber + 1)
+            else:
+                self.newName = self.newName + "_1"
+            self.execute(context)
+
+        #######################################################################
+        #######################################################################
+
         oldName = context.active_object.name
         context.active_object.name = self.newName
         bpy.data.armatures[oldName].name = self.newName
@@ -345,16 +373,15 @@ class JoinModels(RDOperator):
         SelectModel.run(model_name=self.targetArmatureName)
         bpy.data.objects[sourceArmName].select = True
 
-        # TODO The following doesn't yet work
-        # Fix error where merge operation fails to make second robot a child
-        # segment of the first one if both have the same base name
-        if context.active_object.data.bones[0].name == self.targetArmatureName:
-            context.active_object.data.bones[0].name = context.active_object.data.bones[0].name + "_001"
+        # Check if both base bones have the same name and fix that.
+        # if context.active_object.data.bones[0].name == self.targetArmatureName:
+        #     context.active_object.data.bones[0].name = context.active_object.data.bones[0].name + "_1"
 
         sourceParentBoneName = context.active_object.data.bones[0].name
 
         bpy.ops.object.join()
         segments.SelectSegment.run(segment_name=sourceParentBoneName)
+        # segments.AssignParentSegment.run(parentName=context.active_object.data.bones[0].name)
 
         segments.AssignParentSegment.run(parent_name=sourceParentBoneName)
 
@@ -392,17 +419,68 @@ class CreateNewModel(RDOperator):
     @RDOperator.Postconditions(ModelSelected)
     def execute(self, context):
         from . import segments
-        model_data = bpy.data.armatures.new(self.model_name)
-        model_object = bpy.data.objects.new(self.model_name, model_data)
-        model_object.data = model_data
-        model_data.show_names = True
-        model_data.show_axes = True
-        model_data.draw_type = 'STICK'
-        scene = bpy.context.scene
-        scene.objects.link(model_object)
-        SelectModel.run(model_name=self.model_name)
-        if self.base_segment_name:
-            segments.CreateNewSegment.run(segment_name=self.base_segment_name)
+
+        #######################################################################
+        #######################################################################
+
+        # Check if robot name is already in use
+        armatures = [obj for obj in context.scene.objects if obj.type == 'ARMATURE']
+        isRobotNameAlreadyUsed = False
+        isBaseSegmentNameAlreadyUsed = False
+        for arm in armatures:
+            if arm.name == self.model_name:
+                isRobotNameAlreadyUsed = True
+            for b in arm.data.bones:
+                if b.name == self.base_segment_name:
+                    isBaseSegmentNameAlreadyUsed = True
+
+        #######################################################################
+        #######################################################################
+
+        # Only create the new arm if there is no robot yet with the same name
+        if isRobotNameAlreadyUsed:
+            import logging
+            gui_logger = logging.getLogger('GUI')
+            gui_logger.setLevel(logging.DEBUG)
+            gui_logger.error("Please create a new unique armature name")
+
+            # Increment mulitpliticity counter in name if it already had a "_1" appended
+            searchObj = re.search('_\d{1,}\Z', self.model_name, re.I)
+            if searchObj:
+                foundNumber = int(float(searchObj.group()[1:]))
+                self.model_name = self.model_name.rstrip(string.digits) + str(foundNumber + 1)
+            else:
+                self.model_name = self.model_name + "_1"
+
+            self.execute(context)
+        elif isBaseSegmentNameAlreadyUsed:
+            import logging
+            gui_logger = logging.getLogger('GUI')
+            gui_logger.setLevel(logging.DEBUG)
+            gui_logger.error("Please create a new unique base segment name")
+
+            # Increment mulitpliticity counter in name if it already had a "_1" appended
+            searchObj = re.search('_\d{1,}\Z', self.base_segment_name, re.I)
+            if searchObj:
+                foundNumber = int(float(searchObj.group()[1:]))
+                self.base_segment_name = self.base_segment_name.rstrip(string.digits) + str(foundNumber + 1)
+            else:
+                self.base_segment_name = self.base_segment_name + "_1"
+
+            self.execute(context)
+        else:
+            model_data = bpy.data.armatures.new(self.model_name)
+            model_object = bpy.data.objects.new(self.model_name, model_data)
+            model_object.data = model_data
+            model_data.show_names = True
+            model_data.show_axes = True
+            model_data.draw_type = 'STICK'
+            scene = bpy.context.scene
+            scene.objects.link(model_object)
+            SelectModel.run(model_name=self.model_name)
+            if self.base_segment_name:
+                segments.CreateNewSegment.run(segment_name=self.base_segment_name)
+
         return {'FINISHED'}
 
     def invoke(self, context, event):
