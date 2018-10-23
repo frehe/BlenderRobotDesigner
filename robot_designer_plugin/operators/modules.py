@@ -250,7 +250,6 @@ class MergeModuleToRobot(RDOperator):
 
         # check if parentSegmentName and selectedModuleBaseName are identical
         # change parentSegmentName if that is the case (to avoid Blender adding .001 to the name)
-        # Since identical naming is not possible anymore, this is only for safety
         if (parentSegmentName == selectedModuleBaseName):
             newName = parentSegmentName + "_parent"
             bpy.context.active_bone.name = newName
@@ -260,31 +259,6 @@ class MergeModuleToRobot(RDOperator):
         self.logger.debug("Parent segment: " + parentSegmentName)
         self.logger.debug("Active bone: " + bpy.context.active_bone.name)
         self.logger.debug("Name of selected module's base: " + selectedModuleBaseName)
-
-        ########## Keep original object locations and rotations by saving all previous values
-        ########## and transforming objects back after join() functions
-        
-        # armatures = [obj for obj in context.scene.objects if obj.type == 'ARMATURE']
-        # childArmatureName = ""
-        # for arm in armatures:
-        #   if arm.data.bones[0].name == selectedModuleBaseName:
-        #       childArmatureName = arm.name
-
-        # Get root bone of child module
-        # child_root_bone = bpy.data.armatures[childArmatureName].bones[selectedModuleBaseName]
-        # child_root_bone.RobotEditor.RD_Bone = False
-        # parent_armature = bpy.data.objects[parentRobotName]
-        # if parent_armature is not None:
-        #    self.logger.debug("invert")
-        #    m = parent_armature.matrix_world.inverted() * child_root_bone.matrix_local
-        # else:
-        #    m = child_root_bone.matrix_local
-        # child_euler = m.to_euler()
-        # child_xyz = m.translation
-        # self.logger.debug("Matrix: " + str(m))
-        # m = parent.matrix_local
-        # parent_euler = m.to_euler()
-        # parent_xyz = m.translation
 
         model.SelectModel.run(model_name=global_properties.new_module_name.get(context.scene))
         bpy.data.objects[parentRobotName].select = True
@@ -305,14 +279,5 @@ class MergeModuleToRobot(RDOperator):
         bpy.ops.object.origin_set(type='ORIGIN_CURSOR', center='MEDIAN')
 
         segments.UpdateSegments.run(segment_name=parentSegmentName, recurse=True)
-
-        # child_root_bone.RobotEditor.Euler.x.value = child_xyz[0]
-        # child_root_bone.RobotEditor.Euler.y.value = child_xyz[1]
-        # child_root_bone.RobotEditor.Euler.z.value = child_xyz[2]
-        # child_root_bone.RobotEditor.Euler.alpha.value = round(degrees(child_euler[0]), 0)
-        # child_root_bone.RobotEditor.Euler.beta.value = round(degrees(child_euler[1]), 0)
-        # child_root_bone.RobotEditor.Euler.gamma.value = round(degrees(child_euler[2]), 0)
-        # child_root_bone.RobotEditor.RD_Bone = True
-        # segments.UpdateSegments.run(segment_name=parentSegmentName, recurse=True)
 
         return {'FINISHED'}
