@@ -131,7 +131,6 @@ class ImportGripper4(RDOperator):
     # Access gripper files from 'grippers' folder, which is located in parent directory, i.e. 'robot_designer_plugin'
     filepath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'resources', 'modules', 'modules_grippers', 'gripper_hand', 'model.sdf')
 
-
     @RDOperator.OperatorLogger
     @RDOperator.Postconditions(ModelSelected, ObjectMode)
     def execute(self, context):
@@ -155,7 +154,6 @@ class ImportArm1(RDOperator):
     # Access arm module files from 'arms' folder, which is located in parent directory, i.e. 'robot_designer_plugin'
     filepath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'resources', 'modules', 'modules_arms', 'arm_1', 'model.sdf')
 
-
     @RDOperator.OperatorLogger
     @RDOperator.Postconditions(ModelSelected, ObjectMode)
     def execute(self, context):
@@ -178,7 +176,6 @@ class ImportArm2(RDOperator):
 
     # Access arm module files from 'arms' folder, which is located in parent directory, i.e. 'robot_designer_plugin'
     filepath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'resources', 'modules', 'modules_arms', 'arm_2', 'model.sdf')
-
 
     @RDOperator.OperatorLogger
     @RDOperator.Postconditions(ModelSelected, ObjectMode)
